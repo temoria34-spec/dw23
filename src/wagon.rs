@@ -28,7 +28,7 @@ pub enum Cargo {
 pub fn weight(cargo: Cargo) -> u32 {
     match cargo {
         Cargo::Flour(pounds) => pounds,
-        Cargo::Bullets(boxes) => boxes * 3,
+        Cargo::Bullets(boxes) => boxes * 2,
         Cargo::Oxen(_) => 0,
     }
 }
@@ -50,7 +50,7 @@ pub fn weight(cargo: Cargo) -> u32 {
 /// ```
 pub fn total_weight(load: &[Cargo]) -> u32 {
     let mut total = 0;
-    for i in 0..load.len() - 1 {
+    for i in 0..load.len() {
         total += weight(load[i]);
     }
     total
@@ -65,5 +65,5 @@ pub fn total_weight(load: &[Cargo]) -> u32 {
 /// assert!(is_overloaded(2001));
 /// ```
 pub fn is_overloaded(total: u32) -> bool {
-    total >= CAPACITY
+    total > CAPACITY
 }

@@ -35,13 +35,15 @@ use wagon::{Cargo, is_overloaded, total_weight};
 ///
 /// let load = [Cargo::Flour(2000), Cargo::Bullets(1)];
 /// assert_eq!(dw23::describe_load(&load), "Load: 2002 lbs (overloaded)");
-/// ```
+/// 
 pub fn describe_load(load: &[Cargo]) -> String {
     let total = total_weight(load);
-    let status = if !is_overloaded(total) {
+
+    let status = if is_overloaded(total) {
         "overloaded"
     } else {
         "ok"
     };
+
     format!("Load: {} lbs ({})", total, status)
 }
